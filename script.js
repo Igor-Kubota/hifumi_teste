@@ -68,12 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return Promise.resolve();
     }
 
-    // playVid().catch((err) => {
-    //     showDebug("Navegador bloqueou o autoplay do vídeo: " + err.message);
-    // });
-
-    // Rede de segurança: caso o navegador ainda assim pause o vídeo em algum momento,
-    // insistimos periodicamente enquanto a página estiver visível.
     const retryInterval = setInterval(() => {
         if (document.visibilityState === "visible" && !isVideoPlaying()) {
             playVid().catch(() => {});
@@ -88,20 +82,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Autoplay do áudio (mp3)
+// Áudio começa mutado
+    audio.muted = true;
+
+    // Autoplay do áudio (mp3) — com muted=true, o navegador sempre permite
     audio.play().then(() => {
-        btn.textContent = "🔊";
+        btn.textContent = "🔇";
     }).catch(() => {
-        btn.textContent = "🔊";
+        btn.textContent = "🔇";
     });
 
     btn.addEventListener("click", () => {
-        if (audio.paused) {
-            audio.play();
-            btn.textContent = "🔊";
-        } else {
-            audio.pause();
-            btn.textContent = "🔇";
-        }
+        audio.muted = !audio.muted;
+        btn.textContent = audio.muted ? "🔇" : "🔊";
     });
 });
