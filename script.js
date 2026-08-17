@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const video = document.getElementById("bg-video");
     const audio = document.getElementById("bg-audio");
     const btn = document.getElementById("toggle-audio-btn");
+    const audioLabel = document.getElementById("audio-label");
 
     videoSource.src = CONFIG.videoFile;
     videoSource.type = CONFIG.videoType;
@@ -33,28 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     audio.volume = CONFIG.volume;
 
-    // Erro no elemento <video>
-    // video.addEventListener("error", () => {
-    //     const err = video.error;
-    //     let reason = "desconhecido";
-    //     if (err) {
-    //         switch (err.code) {
-    //             case err.MEDIA_ERR_ABORTED: reason = "carregamento abortado"; break;
-    //             case err.MEDIA_ERR_NETWORK: reason = "erro de rede (arquivo não encontrado no caminho '" + CONFIG.videoFile + "'?)"; break;
-    //             case err.MEDIA_ERR_DECODE: reason = "erro de decodificação (arquivo corrompido)"; break;
-    //             case err.MEDIA_ERR_SRC_NOT_SUPPORTED: reason = "formato/codec não suportado pelo navegador"; break;
-    //         }
-    //     }
-    //     showDebug("Falha ao carregar vídeo: " + reason);
-    // });
-
-    // videoSource.addEventListener("error", () => {
-    //     showDebug("Não foi possível carregar o arquivo de vídeo em '" + CONFIG.videoFile + "'. Verifique se o arquivo existe nesse caminho relativo ao index.html.");
-    // });
-
-    // audio.addEventListener("error", () => {
-    //     showDebug("Falha ao carregar áudio em '" + CONFIG.audioFile + "'.");
-    // });
 
     function isVideoPlaying() {
         return video.currentTime > 0 && !video.paused && !video.ended
@@ -82,18 +61,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-// Áudio começa mutado
     audio.muted = true;
-
-    // Autoplay do áudio (mp3) — com muted=true, o navegador sempre permite
+ 
     audio.play().then(() => {
         btn.textContent = "🔇";
+        audioLabel.textContent = "> Blue Archive OST 80. Colorful Beach";
     }).catch(() => {
         btn.textContent = "🔇";
+        audioLabel.textContent = "> Blue Archive OST 80. Colorful Beach";
     });
-
+ 
     btn.addEventListener("click", () => {
         audio.muted = !audio.muted;
         btn.textContent = audio.muted ? "🔇" : "🔊";
+        audioLabel.textContent = audio.muted ? "> Blue Archive OST 80. Colorful Beach" : "> Blue Archive OST 80. Colorful Beach";
     });
 });

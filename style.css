@@ -1,6 +1,6 @@
 :root {
     --overlay-color: rgba(0, 0, 0, 0.3);
-    --font-family: Arial, sans-serif;
+    --font-family: "Cherry Bomb One", cursive;
     --text-color: #ffffff;
     --btn-bg: #007bff;
     --btn-bg-hover: #0056b3;
@@ -87,12 +87,29 @@ button:hover {
     background-color: var(--btn-bg-hover);
 }
 
-/* Botão de mutar/desmutar: redondo e com estilo glass, igual ao menu.
-   position:fixed tira ele do fluxo centralizado da .overlay. */
-#toggle-audio-btn {
+/* Container do botão de áudio + texto ao lado.
+   position:fixed aqui tira o conjunto do fluxo centralizado da .overlay. */
+.audio-control {
     position: fixed;
     top: 24px;
     left: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+}
+
+#audio-label {
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--text-color);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    white-space: nowrap;
+}
+
+/* Botão de mutar/desmutar: redondo e com estilo glass, igual ao menu. */
+#toggle-audio-btn {
     width: 64px;
     height: 64px;
     padding: 0;
@@ -153,6 +170,8 @@ button:hover {
     padding: 34px 64px;
     font-size: 2rem;
     font-weight: 600;
+    font-family: var(--font-family);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
     letter-spacing: 0.5px;
     color: var(--text-color);
     background: rgba(255, 255, 255, 0.08);

@@ -6,6 +6,9 @@
     <link rel="icon" type="image/png" href="sources/icon_hifumi.png">
     <title>Aigas | Home </title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -19,9 +22,9 @@
 
     <nav class="side-menu">
         <button class="menu-btn" id="menu-btn-1">Start</button>
-        <button class="menu-btn" id="menu-btn-2">Title drop</button>
-        <button class="menu-btn" id="menu-btn-3">Galeria</button>
-        <button class="menu-btn" id="menu-btn-4">Contato</button>
+        <button class="menu-btn" id="menu-btn-2">Title</button>
+        <button class="menu-btn" id="menu-btn-3">Gallery</button>
+        <button class="menu-btn" id="menu-btn-4">Contact</button>
     </nav>
 
     <audio id="bg-audio" loop>
@@ -30,7 +33,10 @@
     </audio>
 
     <div class="overlay">
-        <button id="toggle-audio-btn">🔊</button>
+        <div class="audio-control">
+            <button id="toggle-audio-btn">🔊</button>
+            <span id="audio-label">Áudio ligado</span>
+        </div>
     </div>
 
 
