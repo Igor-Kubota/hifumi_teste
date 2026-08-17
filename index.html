@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vídeo e Áudio de Fundo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- playsinline: necessário no iOS/Safari e alguns Android para autoplay funcionar -->
+    <video autoplay muted loop playsinline id="bg-video">
+        <source id="video-source" src="" type="">
+        Seu navegador não suporta tags de vídeo HTML5.
+    </video>
+
+    <nav class="side-menu">
+        <button class="menu-btn" id="menu-btn-1">Início</button>
+        <button class="menu-btn" id="menu-btn-2">Sobre</button>
+        <button class="menu-btn" id="menu-btn-3">Galeria</button>
+        <button class="menu-btn" id="menu-btn-4">Contato</button>
+    </nav>
+
+    <audio id="bg-audio" loop>
+        <source id="audio-source" src="" type="">
+        Seu navegador não suporta tags de áudio HTML5.
+    </audio>
+
+    <div class="overlay">
+        <h1>Bem-vindo ao Meu Site</h1>
+        <p>Vídeo de fundo em loop com áudio configurável.</p>
+        <button id="toggle-audio-btn">🔊 Pausar Áudio</button>
+    </div>
+
+    <div id="debug-msg"></div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
