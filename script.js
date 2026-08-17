@@ -48,13 +48,13 @@ document.addEventListener("DOMContentLoaded", () => {
     //     showDebug("Falha ao carregar vídeo: " + reason);
     // });
 
-    videoSource.addEventListener("error", () => {
-        showDebug("Não foi possível carregar o arquivo de vídeo em '" + CONFIG.videoFile + "'. Verifique se o arquivo existe nesse caminho relativo ao index.html.");
-    });
+    // videoSource.addEventListener("error", () => {
+    //     showDebug("Não foi possível carregar o arquivo de vídeo em '" + CONFIG.videoFile + "'. Verifique se o arquivo existe nesse caminho relativo ao index.html.");
+    // });
 
-    audio.addEventListener("error", () => {
-        showDebug("Falha ao carregar áudio em '" + CONFIG.audioFile + "'.");
-    });
+    // audio.addEventListener("error", () => {
+    //     showDebug("Falha ao carregar áudio em '" + CONFIG.audioFile + "'.");
+    // });
 
     function isVideoPlaying() {
         return video.currentTime > 0 && !video.paused && !video.ended
@@ -68,9 +68,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return Promise.resolve();
     }
 
-    playVid().catch((err) => {
-        showDebug("Navegador bloqueou o autoplay do vídeo: " + err.message);
-    });
+    // playVid().catch((err) => {
+    //     showDebug("Navegador bloqueou o autoplay do vídeo: " + err.message);
+    // });
 
     // Rede de segurança: caso o navegador ainda assim pause o vídeo em algum momento,
     // insistimos periodicamente enquanto a página estiver visível.
@@ -90,18 +90,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Autoplay do áudio (mp3)
     audio.play().then(() => {
-        btn.textContent = "🔊 Pausar Áudio";
+        btn.textContent = "🔊";
     }).catch(() => {
-        btn.textContent = "▶️ Tocar Áudio";
+        btn.textContent = "🔊";
     });
 
     btn.addEventListener("click", () => {
         if (audio.paused) {
             audio.play();
-            btn.textContent = "🔊 Pausar Áudio";
+            btn.textContent = "🔊";
         } else {
             audio.pause();
-            btn.textContent = "🔇 Tocar Áudio";
+            btn.textContent = "🔇";
         }
     });
 });
