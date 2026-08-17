@@ -62,18 +62,47 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     audio.muted = true;
- 
-    audio.play().then(() => {
+
+    function isAudioPlaying() {
+        return audio.currentTime > 0 && !audio.paused && !audio.ended
+            && audio.readyState > audio.HAVE_CURRENT_DATA;
+    }
+
+    function playAudio() {
+        if (!isAudioPlaying()) {
+            return audio.play();
+        }
+        return Promise.resolve();
+    }
+
+    playAudio().then(() => {
         btn.textContent = "🔇";
         audioLabel.textContent = "> Blue Archive OST 80. Colorful Beach";
     }).catch(() => {
         btn.textContent = "🔇";
         audioLabel.textContent = "> Blue Archive OST 80. Colorful Beach";
     });
- 
+
+    const audioRetryInterval = setInterval(() => {
+        if (document.visibilityState === "visible" && !isAudioPlaying()) {
+            playAudio().catch(() => {});
+        } else if (isAudioPlaying()) {
+            clearInterval(audioRetryInterval);
+        }
+    }, 1000);
+
+    document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible" && !isAudioPlaying()) {
+            playAudio().catch(() => {});
+        }
+    });
+
     btn.addEventListener("click", () => {
         audio.muted = !audio.muted;
         btn.textContent = audio.muted ? "🔇" : "🔊";
-        audioLabel.textContent = audio.muted ? "> Blue Archive OST 80. Colorful Beach" : "> Blue Archive OST 80. Colorful Beach";
+        audioLabel.textContent = "> Blue Archive OST 80. Colorful Beach";
+        if (!isAudioPlaying()) {
+            playAudio().catch(() => {});
+        }
     });
 });
